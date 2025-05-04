@@ -29,3 +29,7 @@
     root :to => 'memos#index'
     resources :memos, only: [:index, :update, :destroy, :create]
     ```
+  - メモの CRUD 機能を追加
+    - 今回は１画面で CRUD 全て積み込んでいるスタイル
+    - もし新規登録、編集画面を別で用意する場合は `:new`, `:edit`を付与するのかな
+    - `index.html.erb` の記述は、正直人力でやるものじゃない、ChatGPT とかに任せましょう
