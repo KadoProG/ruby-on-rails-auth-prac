@@ -21,3 +21,11 @@
     - id は自動付与されるらしい
   - Laravel と異なり、この時点で schema.db, models ファイルなどが自動生成される
   - 今回の環境は SQLite3 なので、`storage/development.sqlite3` の内容を見れば確認できる
+- Controller 作成
+  - `rials g controller Memos index`
+    - model は単数形なのに、controller は複数形なんですね（まあ動画が間違ってるのかもしれないが）
+  - routes の `get memos/index`を以下に書き換える
+    ```rb
+    root :to => 'memos#index'
+    resources :memos, only: [:index, :update, :destroy, :create]
+    ```
