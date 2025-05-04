@@ -15,3 +15,9 @@
 
 - `rails new .` で環境構築
   - ruby → 3.4.2, rails → 8.0.2
+- Memo という モデルを作成
+  - `rails g model Memo`
+  - あとは自分で `db/migrate/〇〇_create_memos.rb`に必要なスキーマを追加
+    - id は自動付与されるらしい
+  - Laravel と異なり、この時点で schema.db, models ファイルなどが自動生成される
+  - 今回の環境は SQLite3 なので、`storage/development.sqlite3` の内容を見れば確認できる
