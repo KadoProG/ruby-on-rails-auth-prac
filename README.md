@@ -33,3 +33,11 @@
     - 今回は１画面で CRUD 全て積み込んでいるスタイル
     - もし新規登録、編集画面を別で用意する場合は `:new`, `:edit`を付与するのかな
     - `index.html.erb` の記述は、正直人力でやるものじゃない、ChatGPT とかに任せましょう
+- Tailwind CSS 導入
+  - `rails new` の時点で `--css=tailwind` オプションを付けるだけでも可能らしい
+  - [【Rails】Tailwind CSS 導入〜使えるようになるまで《3 分で完了》](https://qiita.com/dzs/items/76cb174e4fb5867bf5be) 参考に実施
+    ```shell
+    $ bundle add tailwindcss-rails
+    $ rails tailwindcss:install
+    ```
+  - 以降は `rails s` ではなく `./bin/dev` を叩いてサーバを立ち上げる必要があるっぽい
