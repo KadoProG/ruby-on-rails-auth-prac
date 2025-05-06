@@ -1,39 +1,50 @@
-<div class="wrapper">
-    <div class="container flex-start">
-        <div class="col-box-1">
-            <h2 class="text-3xl font-bold">メモ一覧</h2>
-        </div>
-        <div>
-            <%= form_with model: @memo_new, url: memos_path, local: true, method: :post do |f| %>
-                <div class="memo-header">
-                    <%= f.text_field :title, placeholder: "タイトル", class: "form-box" %>
-                </div>
-                <div class="memo-center">
-                    <%= f.text_area :description, placeholder: "メモ", class: "form-box" %>
-                </div>
-                <div class="memo-footer">
-                    <%= f.submit "作成", class: "btn" %>
-                </div>
-            <% end %>
-        </div>
+<div class="max-w-3xl mx-auto px-4 py-8 space-y-8">
+  <h1 class="text-4xl font-bold text-gray-800">メモ一覧ページ</h1>
 
-        <% @memos.reverse.each do |memo| %>
-            <div class="col-box-3">
-                <%= form_with model: memo, url: memo_path(memo.id), local: true, method: :patch do |f| %>
-                    <div class="memo-header">
-                        <%= f.text_field :title, placeholder: "タイトル", class: "form-box" %>
-                    </div>
-                    <div class="memo-center">
-                        <%= f.text_area :description, placeholder: "メモ", class: "form-box" %>
-                    </div>
-                    <div class="memo-footer">
-                        <%= f.submit "更新", class: "btn" %>
-                    </div>
-                <% end %>
-                <div class="memo-other">
-                    <%= button_to "削除", memo_path(memo.id), method: :delete, class: "btn" %>
-                </div>
-            </div>
+  <!-- 新規メモ作成フォーム -->
+  <div class="border border-gray-300 rounded-lg p-6 bg-white shadow-sm">
+    <%= form_with model: @memo_new, url: memos_path, local: true, method: :post do |f| %>
+      <h2 class="text-2xl font-semibold text-gray-700 mb-4">新規メモ作成</h2>
+
+      <div class="mb-4">
+        <%= f.label :title, "タイトル", class: "block text-sm font-medium text-gray-600" %>
+        <%= f.text_field :title, placeholder: "タイトル", class: "mt-1 w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-200" %>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :description, "メモ", class: "block text-sm font-medium text-gray-600" %>
+        <%= f.text_area :description, placeholder: "メモ", rows: 4, class: "mt-1 w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-200" %>
+      </div>
+
+      <div>
+        <%= f.submit "作成", class: "bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition" %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- メモ一覧 -->
+  <div>
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">メモ一覧</h2>
+
+    <% @memos.reverse.each do |memo| %>
+      <div class="border border-gray-300 rounded-lg p-6 mb-6 bg-white shadow-sm">
+        <%= form_with model: memo, url: memo_path(memo.id), local: true, method: :patch do |f| %>
+          <div class="mb-4">
+            <%= f.label :title, "タイトル", class: "block text-sm font-medium text-gray-600" %>
+            <%= f.text_field :title, placeholder: "タイトル", class: "mt-1 w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-200" %>
+          </div>
+
+          <div class="mb-4">
+            <%= f.label :description, "メモ", class: "block text-sm font-medium text-gray-600" %>
+            <%= f.text_area :description, placeholder: "メモ", rows: 4, class: "mt-1 w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-200" %>
+          </div>
+
+          <div class="flex gap-4">
+            <%= f.submit "更新", class: "bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition" %>
+            <%= button_to "削除", memo_path(memo.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition" %>
+          </div>
         <% end %>
-    </div>
+      </div>
+    <% end %>
+  </div>
 </div>
